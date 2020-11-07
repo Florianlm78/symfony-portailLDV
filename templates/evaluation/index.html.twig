@@ -5,7 +5,7 @@
 {% block body %}
 
 
-<p>You are logged in as {{ app.user.classe }}</p>
+<p>You are logged in as {{ app.user.nom }}</p>
 
 
 
@@ -13,6 +13,7 @@
 {% if is_granted('ROLE_PROF') == true %}
 
 <table border="1">
+
 	<thead>
 		<tr>
 			<th>Nom</th>
@@ -22,18 +23,24 @@
 		</tr>
 	</thead>
 	<tbody>
+
 	{% for user in users %}
-		<tr>
-			<td>{{user.nom}}</td>
-            <td>{{user.prenom}}</td>
-            <td>{{user.classe}}</td>
-		</tr>
+	<tr>
+        {% for role in user.roles %}
+            {% if role == "ROLE_ELEVE" %}
+            	<td>{{user.nom}}</td>
+            	<td>{{user.prenom}}</td>
+            	<td>{{user.classe}}</td>
+            {% endif %}
+		{% endfor %}
+	</tr>
+        
 	{% else %}
 		<tr>
-			<td colspan="5">Il n'y a pas d'user</td>
+			<td colspan="5">Il n'y a pas d'utilisateurs</td>
 		</tr>
-	{% endfor %}
 	</tbody>
+    {% endfor %}
 </table>
 
 <h1>Ajouter une note</h1>
