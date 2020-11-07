@@ -4,8 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Evaluation;
 use App\Entity\Cours;
-use App\Form\CoursType;
 use App\Entity\User;
+use App\Form\CoursType;
 use App\Form\EvaluationType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -51,10 +51,26 @@ class EvaluationController extends AbstractController
                 'evaluations' => $evaluations,
                 'ajout' => $form->createView(),
                 'desCours' => $desCours,
-                'ajoutCours' => $formCours->createView(),
+                'ajoutCours' => $formCours->createView(), 
                 'users' => $users,
             ]);
         }
+
+
+            /**
+         * @Route("/dashboard/{id}", name="evaluation")
+         */
+        public function show(Request $request): Response {
+            $em = $this->getDoctrine()->getManager();
+            $evaluations = $em->getRepository(Panier::class)->findAll();            
+        
+
+        return $this->render('evaluation/show.html.twig', [
+            'evaluations' => $evaluations,
+        ]);
+
+
+    
 
        
     

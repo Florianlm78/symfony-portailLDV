@@ -5,7 +5,13 @@
 {% block body %}
 
 
+<p>You are logged in as {{ app.user.classe }}</p>
+
+
+
+
 {% if is_granted('ROLE_PROF') == true %}
+
 <h1>Ajouter une note</h1>
 {{form(ajout)}}
 
@@ -25,14 +31,15 @@
                 <td>{{ user.id }}</td>
                 <td>{{ user.nom }}</td>
                 <td>{{ user.prenom }}</td>
-                <td>{{ user.classe }}</td>            
+                <td>{{ user.classe }}</td> 
+                <td><a href="{{ path('notation_show', {'id': user.id}) }}"> Voir Note </a> </td>            
             </tr>
         {% else %}
             <tr>
                 <td colspan="6"> non </td>
             </tr>
 
-            
+
         {% endfor %}
         </tbody>
     </table>
