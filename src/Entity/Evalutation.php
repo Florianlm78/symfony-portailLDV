@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\EvalutationRepository;
+use App\Repository\EvaluationRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=EvalutationRepository::class)
+ * @ORM\Entity(repositoryClass=EvaluationRepository::class)
  */
-class Evalutation
+class Evaluation
 {
     /**
      * @ORM\Id
@@ -18,13 +18,13 @@ class Evalutation
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Cours::class, inversedBy="evalutations")
+     * @ORM\ManyToOne(targetEntity=Cours::class, inversedBy="Evaluations")
      * @ORM\JoinColumn(nullable=false)
      */
     private $cours;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="evalutations")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="Evaluations")
      * @ORM\JoinColumn(nullable=false)
      */
     private $eleve;

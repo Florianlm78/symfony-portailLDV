@@ -54,13 +54,13 @@ class User implements UserInterface
     private $classe;
 
     /**
-     * @ORM\OneToMany(targetEntity=Evalutation::class, mappedBy="eleve", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity=Evaluation::class, mappedBy="eleve", orphanRemoval=true)
      */
-    private $evalutations;
+    private $Evaluations;
 
     public function __construct()
     {
-        $this->evalutations = new ArrayCollection();
+        $this->Evaluations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -178,29 +178,29 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Evalutation[]
+     * @return Collection|Evaluation[]
      */
-    public function getEvalutations(): Collection
+    public function getEvaluations(): Collection
     {
-        return $this->evalutations;
+        return $this->Evaluations;
     }
 
-    public function addEvalutation(Evalutation $evalutation): self
+    public function addEvaluation(Evaluation $Evaluation): self
     {
-        if (!$this->evalutations->contains($evalutation)) {
-            $this->evalutations[] = $evalutation;
-            $evalutation->setEleve($this);
+        if (!$this->Evaluations->contains($Evaluation)) {
+            $this->Evaluations[] = $Evaluation;
+            $Evaluation->setEleve($this);
         }
 
         return $this;
     }
 
-    public function removeEvalutation(Evalutation $evalutation): self
+    public function removeEvaluation(Evaluation $Evaluation): self
     {
-        if ($this->evalutations->removeElement($evalutation)) {
+        if ($this->Evaluations->removeElement($Evaluation)) {
             // set the owning side to null (unless already changed)
-            if ($evalutation->getEleve() === $this) {
-                $evalutation->setEleve(null);
+            if ($Evaluation->getEleve() === $this) {
+                $Evaluation->setEleve(null);
             }
         }
 
