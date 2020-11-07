@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/user", name="user")
+     * @Route("/dashboard", name="user")
      */
     public function index(): Response
     {
@@ -17,4 +17,6 @@ class UserController extends AbstractController
             'controller_name' => 'UserController',
         ]);
     }
+
+    
 }
