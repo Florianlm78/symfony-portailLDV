@@ -47,6 +47,8 @@ class EvaluationController extends AbstractController
             $evaluations = $em->getRepository(Evaluation::class)->findAll();
             $desCours = $em->getRepository(Cours::class)->findAll();
             $users = $em->getRepository(User::class)->findAll();
+
+
             return $this->render('evaluation/index.html.twig', [
                 'evaluations' => $evaluations,
                 'ajout' => $form->createView(),
@@ -56,6 +58,23 @@ class EvaluationController extends AbstractController
             ]);
         }
 
+    /**
+     * @Route("/dashboard/{id}", name="evaluation-show")
+     */
+
+        public function show(Evaluation $evaluation): Response
+        {
+            $em = $this->getDoctrine()->getManager();
+
+            if($evaluation == null){
+                $this->addFlash('error', 'Catégorie introuvable');
+                return $this->redirectToRoute('home');
+            }
+
+            return $this->render('evaluation/show.html.twig', [
+                'evaluation' => $evaluation,
+            ]);
+        }
 
     
     }

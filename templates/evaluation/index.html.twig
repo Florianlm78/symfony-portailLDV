@@ -10,6 +10,38 @@
 
 
 
+
+
+<table class="table" border="1">
+
+	<thead>
+		<tr>
+			<th>Nom</th>
+			<th>Matière</th>
+            <th>Note</th>
+            <th>Commentaire</th>
+            
+		</tr>
+	</thead>
+	<tbody>
+
+	{% for evaluation in evaluations %}
+	<tr>
+		<td>{{ evaluation.eleve }}</td>
+		<td>{{ evaluation.cours }}</td>
+		<td>{{ evaluation.note }}</td>
+		<td>{{ evaluation.commentaire }}</td>
+	</tr>
+	{% else %}
+		<tr>
+			<td colspan="5">Il n'y a pas d'utilisateurs</td>
+		</tr>
+	</tbody>
+    {% endfor %}
+</table>
+
+
+
 {% if is_granted('ROLE_PROF') == true %}
 
 <table class="table" border="1">
@@ -28,7 +60,11 @@
 	<tr>
         {% for role in user.roles %}
             {% if role == "ROLE_ELEVE" %}
-            	<td>{{user.nom}}</td>
+            	<td>
+					<a href="{{ path('evaluation-show', {'id': user.id})}}">
+						{{user.nom}}
+					</a>
+				</td>
             	<td>{{user.prenom}}</td>
             	<td>{{user.classe}}</td>
                 {# <td><a href="{{ path('notation_show', {'id': user.id}) }}"> Voir Note </a> </td>   #}
