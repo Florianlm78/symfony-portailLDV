@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -50,6 +52,16 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $classe;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Evalutation::class, mappedBy="eleve", orphanRemoval=true)
+     */
+    private $evalutations;
+
+    public function __construct()
+    {
+        $this->evalutations = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -161,6 +173,36 @@ class User implements UserInterface
     public function setClasse(?string $classe): self
     {
         $this->classe = $classe;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Evalutation[]
+     */
+    public function getEvalutations(): Collection
+    {
+        return $this->evalutations;
+    }
+
+    public function addEvalutation(Evalutation $evalutation): self
+    {
+        if (!$this->evalutations->contains($evalutation)) {
+            $this->evalutations[] = $evalutation;
+            $evalutation->setEleve($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEvalutation(Evalutation $evalutation): self
+    {
+        if ($this->evalutations->removeElement($evalutation)) {
+            // set the owning side to null (unless already changed)
+            if ($evalutation->getEleve() === $this) {
+                $evalutation->setEleve(null);
+            }
+        }
 
         return $this;
     }

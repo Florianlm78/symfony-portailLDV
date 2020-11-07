@@ -105,3 +105,4 @@ class AuthAuthenticator extends AbstractFormLoginAuthenticator implements Passwo
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
 }
+ 
