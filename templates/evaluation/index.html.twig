@@ -4,10 +4,16 @@
 
 {% block body %}
 
+
+{% if is_granted('ROLE_PROF') == true %}
 <h1>Ajouter une note</h1>
 {{form(ajout)}}
+{% endif %}
 
+
+{% if is_granted('ROLE_ADMIN') == true %}
 <h2>Ajouter un cours</h2>
+{{ form(ajoutCours) }}           
+ {% endif %}
 
-{{ form(ajoutCours) }}
 {% endblock %}
