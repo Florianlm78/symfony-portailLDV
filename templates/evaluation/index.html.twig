@@ -5,7 +5,37 @@
 {% block body %}
 
 
+<p>You are logged in as {{ app.user.classe }}</p>
+
+
+
+
 {% if is_granted('ROLE_PROF') == true %}
+
+<table border="1">
+	<thead>
+		<tr>
+			<th>Nom</th>
+            <th>Prenom</th>
+            <th>Classe</th>
+            
+		</tr>
+	</thead>
+	<tbody>
+	{% for user in users %}
+		<tr>
+			<td>{{user.nom}}</td>
+            <td>{{user.prenom}}</td>
+            <td>{{user.classe}}</td>
+		</tr>
+	{% else %}
+		<tr>
+			<td colspan="5">Il n'y a pas d'user</td>
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>
+
 <h1>Ajouter une note</h1>
 {{form(ajout)}}
 {% endif %}
