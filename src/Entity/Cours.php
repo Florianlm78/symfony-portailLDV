@@ -27,11 +27,11 @@ class Cours
     /**
      * @ORM\OneToMany(targetEntity=Evaluation::class, mappedBy="cours", orphanRemoval=true)
      */
-    private $Evaluations;
+    private $evaluations;
 
     public function __construct()
     {
-        $this->Evaluations = new ArrayCollection();
+        $this->evaluations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -56,25 +56,25 @@ class Cours
      */
     public function getEvaluations(): Collection
     {
-        return $this->Evaluations;
+        return $this->evaluations;
     }
 
-    public function addEvaluation(Evaluation $Evaluation): self
+    public function addEvaluation(Evaluation $evaluation): self
     {
-        if (!$this->Evaluations->contains($Evaluation)) {
-            $this->Evaluations[] = $Evaluation;
-            $Evaluation->setCours($this);
+        if (!$this->evaluations->contains($evaluation)) {
+            $this->evaluations[] = $evaluation;
+            $evaluation->setCours($this);
         }
 
         return $this;
     }
 
-    public function removeEvaluation(Evaluation $Evaluation): self
+    public function removeEvaluation(Evaluation $evaluation): self
     {
-        if ($this->Evaluations->removeElement($Evaluation)) {
+        if ($this->evaluations->removeElement($evaluation)) {
             // set the owning side to null (unless already changed)
-            if ($Evaluation->getCours() === $this) {
-                $Evaluation->setCours(null);
+            if ($evaluation->getCours() === $this) {
+                $evaluation->setCours(null);
             }
         }
 

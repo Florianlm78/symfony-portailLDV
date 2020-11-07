@@ -18,13 +18,13 @@ class Evaluation
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Cours::class, inversedBy="Evaluations")
+     * @ORM\ManyToOne(targetEntity=Cours::class, inversedBy="evaluations")
      * @ORM\JoinColumn(nullable=false)
      */
     private $cours;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="Evaluations")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="evaluations")
      * @ORM\JoinColumn(nullable=false)
      */
     private $eleve;

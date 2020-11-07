@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class EvaluationController extends AbstractController
 {
     /**
-     * @Route("/", name="evaluation")
+     * @Route("/dashboard", name="evaluation")
      */
 
         public function index(Request $request): Response
