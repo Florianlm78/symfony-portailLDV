@@ -8,6 +8,36 @@
 {% if is_granted('ROLE_PROF') == true %}
 <h1>Ajouter une note</h1>
 {{form(ajout)}}
+
+ <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th> Nom </th>
+                <th> Prenom</th> 
+                <th> Classe</th>                 
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.nom }}</td>
+                <td>{{ user.prenom }}</td>
+                <td>{{ user.classe }}</td>            
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6"> non </td>
+            </tr>
+
+            
+        {% endfor %}
+        </tbody>
+    </table>
+
+
 {% endif %}
 
 
@@ -15,5 +45,11 @@
 <h2>Ajouter un cours</h2>
 {{ form(ajoutCours) }}           
  {% endif %}
+
+
+
+
+
+
 
 {% endblock %}

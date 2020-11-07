@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Evaluation;
 use App\Entity\Cours;
 use App\Form\CoursType;
+use App\Entity\User;
 use App\Form\EvaluationType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -44,12 +45,14 @@ class EvaluationController extends AbstractController
     
             $evaluations = $em->getRepository(Evaluation::class)->findAll();
             $desCours = $em->getRepository(Cours::class)->findAll();
+            $users = $em->getRepository(User::class)->findAll();
     
             return $this->render('evaluation/index.html.twig', [
                 'evaluations' => $evaluations,
                 'ajout' => $form->createView(),
                 'desCours' => $desCours,
-                'ajoutCours' => $formCours->createView()
+                'ajoutCours' => $formCours->createView(),
+                'users' => $users,
             ]);
         }
 
