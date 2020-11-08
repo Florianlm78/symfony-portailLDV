@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello EvaluationController!{% endblock %}
+{% block title %}Dashboard{% endblock %}
 
 {% block body %}
 
 
-<h1> Bonjour {{ app.user.prenom }}</h1>
+<div class="container">
+<h1 class="mt-5"> Bonjour {{ app.user.prenom }}</h1>
 
 
 
@@ -13,9 +14,9 @@
 
 {# {{ dump( app.user ) }} #}
 
-<h1>{{'notation.liste'|trans}}</h1>
+<h1 class="mt-5 mb-5">{{'notation.liste'|trans}}</h1>
 
-<table class="table" border="1">
+<table class="table mt-5" border="1">
 
 	<thead>
 		<tr>
@@ -65,9 +66,9 @@
 
 {% if is_granted('ROLE_PROF') == true %}
 
-<h1>Liste des élèves</h1>
+<h1 class="mt-5">Liste des élèves</h1>
 
-<table class="table" border="1">
+<table class="table mt-5" border="1">
 
 	<thead>
 		<tr>
@@ -110,7 +111,7 @@
     {% endfor %}
 </table>
 
-<h1>Ajouter une note</h1>
+<h1 class="mt-5">Ajouter une note</h1>
 {{form(ajout)}}
 
 
@@ -123,7 +124,7 @@
  {% endif %}
 
 
-
+</div>
 
 
 
