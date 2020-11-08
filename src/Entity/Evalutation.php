@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\EvaluationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EvaluationRepository::class)
@@ -31,6 +32,8 @@ class Evaluation
 
     /**
      * @ORM\Column(type="float")
+     * @Assert\LessThanOrEqual(20)
+     * @Assert\PositiveOrZero
      */
     private $note;
 

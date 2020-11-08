@@ -19,12 +19,23 @@
       <li class="nav-item">
         <a class="nav-link" href="/dashboard"> {{'menu.tableau_de_bord'|trans}} </a>
       </li>
+    
       <li class="nav-item">
         <a class="nav-link" href="/registration"> {{'menu.inscription'|trans}} </a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">logout</a>
+      </li>
+
+
+{% if is_granted('ROLE_ADMIN') == true %} 
       <li class="nav-item">
         <a class="nav-link" href="/"> {{'menu.connexion'|trans}}</a>
       </li>
+ {% endif %}
+
+
     </ul>
   </div>
 </nav>
@@ -44,3 +55,6 @@
         {% block javascripts %}{% endblock %}
     </body>
 </html>
+
+
+
