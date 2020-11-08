@@ -1,0 +1,14 @@
+
+menu:
+
+        tableau_de_bord: "Tableau de bord"
+        connexion: "Log In"
+        inscription: "Sign up"
+        deconnexion: "log Out"
+notation: 
+        nom: "Nom"
+        commentaire: "commentaire"
+        note: "note"
+        moyenne: "moyenne"
+        pas_de_note: "Il n'y a pas de notes"
+        liste: "Liste de toutes les notes des élèves"

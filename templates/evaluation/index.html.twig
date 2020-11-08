@@ -13,16 +13,16 @@
 
 {# {{ dump( app.user ) }} #}
 
-<h1>Liste de toutes les notes des élèves</h1>
+<h1>{{'notation.liste'|trans}}</h1>
 
 <table class="table" border="1">
 
 	<thead>
 		<tr>
-			<th>Nom</th>
-			<th>Matière</th>
-            <th>Note</th>
-            <th>Commentaire</th>
+			<th>{{'notation.nom'|trans}}</th>
+			<th>{{'notation.matiere'|trans}}</th>
+            <th>{{'notation.note'|trans}}</th>
+            <th>{{'notation.commentaire'|trans}}</th>
             
 		</tr>
 	</thead>
@@ -39,7 +39,7 @@
 
 	{% else %}
 		<tr>
-			<td colspan="5">Il n'y a pas de notes</td>
+			<td colspan="5"> {{'notation.pas_de_note'|trans}}</td>
 		</tr>
 	</tbody>
     {% endfor %}
@@ -52,7 +52,7 @@
             {% set total =  total + evaluation.note  %} 
 
         {% endfor %}
-		<td><h3> Moyenne : {{  total / count }} </h3></td>
+		<td><h3> {{'notation.moyenne'|trans}} = {{  total / count }} </h3></td>
 
 	
 
