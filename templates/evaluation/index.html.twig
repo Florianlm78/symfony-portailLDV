@@ -5,15 +5,15 @@
 {% block body %}
 
 
-<p>You are logged in as {{ app.user.nom }}</p>
+<h1> Bonjour {{ app.user.prenom }}</h1>
 
-{{ dump(evaluations ) }}
+
 
 
 
 {# {{ dump( app.user ) }} #}
 
-<h1>Liste de toutes les notes des élèves</h1>
+<h2>Liste de toutes les notes des élèves</h2>
 
 <table class="table" border="1">
 
