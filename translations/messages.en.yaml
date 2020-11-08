@@ -1,0 +1,17 @@
+
+menu:
+
+        tableau_de_bord: "Tableau de bord"
+        connexion: "Log In"
+        inscription: "Sign up"
+        deconnexion: "log Out"
+
+
+notation: 
+        nom: "Name"
+        commentaire: "Comment"
+        note: "Mark"
+        moyenne: "average"
+        matiere: "Classes"
+        pas_de_note: "there is not mark"
+        liste: "All Studen's list"
