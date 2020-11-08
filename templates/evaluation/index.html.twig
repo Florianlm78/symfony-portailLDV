@@ -7,10 +7,12 @@
 
 <p>You are logged in as {{ app.user.nom }}</p>
 
+{{ dump(evaluations ) }}
 
 
 
 
+<h1>Liste de toutes les notes des élèves</h1>
 
 <table class="table" border="1">
 
@@ -32,6 +34,12 @@
 		<td>{{ evaluation.note }}</td>
 		<td>{{ evaluation.commentaire }}</td>
 	</tr>
+
+	{% set moyenne_evaluation = 0 %} 
+    {% for evaluation in evaluations %}
+        {% set moyenne_evaluation =  moyenne_evaluation + evaluation.note  %} 	
+	{% endfor %}
+		
 	{% else %}
 		<tr>
 			<td colspan="5">Il n'y a pas de notes</td>
@@ -44,6 +52,8 @@
 
 {% if is_granted('ROLE_PROF') == true %}
 
+<h1>Liste des élèves</h1>
+
 <table class="table" border="1">
 
 	<thead>
@@ -51,6 +61,7 @@
 			<th>Nom</th>
             <th>Prenom</th>
             <th>Classe</th>
+			<th>Modifier</th>
             
 		</tr>
 	</thead>
@@ -63,10 +74,16 @@
             	<td>
 					<a href="{{ path('evaluation-show', {'id': user.id})}}">
 						{{user.nom}}
-					</a>
+					</a> 
 				</td>
             	<td>{{user.prenom}}</td>
             	<td>{{user.classe}}</td>
+				<td>
+				<a href="{{ path('evaluation_edit', {'id': user.id})}}">
+						Modifier
+				</a> 
+				</td>
+				
                 {# <td><a href="{{ path('notation_show', {'id': user.id}) }}"> Voir Note </a> </td>   #}
             {% endif %}
 		{% endfor %}
