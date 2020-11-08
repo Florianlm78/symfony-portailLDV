@@ -55,6 +55,7 @@ class EvaluationController extends AbstractController
                 'desCours' => $desCours,
                 'ajoutCours' => $formCours->createView(), 
                 'users' => $users,
+                
             ]);
         }
 
@@ -75,6 +76,28 @@ class EvaluationController extends AbstractController
                 'evaluation' => $evaluation,
             ]);
         }
+
+
+    /**
+     * @Route("dashboard/{id}/edit", name="evaluation_edit",)
+     */
+    public function edit(Request $request, Evaluation $evaluation): Response
+    {
+        $form = $this->createForm(EvaluationType::class, $evaluation);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('dashboard');
+        }
+
+        return $this->render('evaluation/edit.html.twig', [
+            'evaluation' => $evaluation,
+            'form' => $form->createView(),
+        ]);
+    }
+
 
     
     }

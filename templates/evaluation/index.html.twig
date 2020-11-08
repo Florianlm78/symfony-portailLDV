@@ -7,10 +7,13 @@
 
 <p>You are logged in as {{ app.user.nom }}</p>
 
+{{ dump(evaluations ) }}
 
 
 
 {# {{ dump( app.user ) }} #}
+
+<h1>Liste de toutes les notes des élèves</h1>
 
 <table class="table" border="1">
 
@@ -32,22 +35,26 @@
 		<td>{{ evaluation.note }}</td>
 		<td>{{ evaluation.commentaire }}</td>
 	</tr>
+
+
 	{% else %}
 		<tr>
-			<td colspan="5">Il n'y a pas d'utilisateurs</td>
+			<td colspan="5">Il n'y a pas de notes</td>
 		</tr>
 	</tbody>
     {% endfor %}
 
-	      {% set total = 0 %} 
+		    {% set total = 0 %} 
 			{% set Total_Length = 0 %} 
 			{% set count =  0  %} 
             {% for evaluation in evaluations %}
-				{% set count =  count + 1  %} 
-                {% set total =  total + evaluation.note  %} 
+			{% set count =  count + 1  %} 
+            {% set total =  total + evaluation.note  %} 
 
         {% endfor %}
 		<td><h3> Moyenne : {{  total / count }} </h3></td>
+
+	
 
 		
 
@@ -58,6 +65,8 @@
 
 {% if is_granted('ROLE_PROF') == true %}
 
+<h1>Liste des élèves</h1>
+
 <table class="table" border="1">
 
 	<thead>
@@ -65,6 +74,7 @@
 			<th>Nom</th>
             <th>Prenom</th>
             <th>Classe</th>
+			<th>Modifier</th>
             
 		</tr>
 	</thead>
@@ -77,10 +87,16 @@
             	<td>
 					<a href="{{ path('evaluation-show', {'id': user.id})}}">
 						{{user.nom}}
-					</a>
+					</a> 
 				</td>
             	<td>{{user.prenom}}</td>
             	<td>{{user.classe}}</td>
+				<td>
+				<a href="{{ path('evaluation_edit', {'id': user.id})}}">
+						Modifier
+				</a> 
+				</td>
+				
                 {# <td><a href="{{ path('notation_show', {'id': user.id}) }}"> Voir Note </a> </td>   #}
             {% endif %}
 		{% endfor %}
