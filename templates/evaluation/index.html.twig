@@ -10,7 +10,7 @@
 
 
 
-
+{# {{ dump( app.user ) }} #}
 
 <table class="table" border="1">
 
@@ -38,8 +38,22 @@
 		</tr>
 	</tbody>
     {% endfor %}
-</table>
 
+	      {% set total = 0 %} 
+			{% set Total_Length = 0 %} 
+			{% set count =  0  %} 
+            {% for evaluation in evaluations %}
+				{% set count =  count + 1  %} 
+                {% set total =  total + evaluation.note  %} 
+
+        {% endfor %}
+		<td><h3> Moyenne : {{  total / count }} </h3></td>
+
+		
+
+	
+</table>
+	
 
 
 {% if is_granted('ROLE_PROF') == true %}
